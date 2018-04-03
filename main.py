@@ -8,7 +8,7 @@ from core.config import token, Client, bot, initial_extensions, embedcolorred, c
 # Logging config
 logging.basicConfig(filename='output.log', filemode='w', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
-version="0.1.7"
+version="0.1.8"
 print('==============FluxBot Starting==============')
 print(f'[Platform] {sys.platform}\n[CWD] {cwd}\n[Version] {version}')
 
