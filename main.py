@@ -3,11 +3,14 @@
 import discord, sys, asyncio, logging, traceback
 from discord.ext.commands import Bot
 from discord.ext import commands
-from core.config import token, Client, bot, initial_extensions, embedcolorred
+from core.config import token, Client, bot, initial_extensions, embedcolorred, cwd
+
 # Logging config
 logging.basicConfig(filename='output.log', filemode='w', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
+version="0.1.7"
 print('==============FluxBot Starting==============')
+print(f'[Platform] {sys.platform}\n[CWD] {cwd}\n[Version] {version}')
 
 # Loading Modules
 if __name__ == '__main__':
@@ -26,7 +29,6 @@ if __name__ == '__main__':
     logging.info('[ExtensionManager] Extension Loading Complete')
         
 
-version="0.1.7"
 # On bot ready
 print(f'[Version] {version}')
 @bot.event

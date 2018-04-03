@@ -1,4 +1,4 @@
-import discord, sys, asyncio, logging                                  # Importing Modules
+import discord, sys, asyncio, logging, os                                  # Importing Modules
 from discord.ext.commands import Bot
 from discord.ext import commands
 from core.config import Client, bot, members, guest, cwd, adminstaff, modstaff, embedcolorred, embedcolorpur
@@ -66,15 +66,27 @@ class CookieCMD:
         memberid = str(memberidint)
         logging.info('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
         print('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
-        if touser is None:
-            channel = message.channel
-            await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
-        else:
-            channel = message.channel
-            try:
-                await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
-            except:
-                await channel.send('Not a user!')
+        if sys.platform == "linux":
+            if touser is None:
+                channel = message.channel
+                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+            else:
+                channel = message.channel
+                try:
+                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+                except:
+                    await channel.send('Not a user!')
+        elif sys.platform == "win32":
+            
+            if touser is None:
+                channel = message.channel
+                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
+            else:
+                channel = message.channel
+                try:
+                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+                except:
+                    await channel.send('Not a user!')
 
 class StaffCMD:
     def __init__(self, bot):

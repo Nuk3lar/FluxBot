@@ -1,3 +1,5 @@
 import os, sys
-
-cwd = os.getcwd()
+if sys.platform == "linux":
+    cwd = os.getenv('PWD')
+elif sys.platform == "win32":
+    cwd = os.getcwd()
