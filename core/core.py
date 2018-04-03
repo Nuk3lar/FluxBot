@@ -15,9 +15,9 @@ class JoinLeave:
         memberidint = member.id
         memberid = str(memberidint)
         logging.info('User ID [ '+memberid+' ] joined the server')
-        channel = self.bot.get_channel(430463352523849740)
+        channel = self.bot.get_channel(272266068335132684)
         user = member
-        role = discord.utils.get(user.guild.roles, id=430479798738092035)
+        role = discord.utils.get(user.guild.roles, id=319105999485009920)
         await member.add_roles(role)
         await channel.send('Welcome to GCorp '+member.mention)
     @Client.event
@@ -34,7 +34,7 @@ class ErrorHandler:
         error = getattr(error, 'original', error)
         if isinstance(error, commands.CommandNotFound):
             logging.error(error) #logs the error
-            embed=discord.Embed(title=u'\u274C That is not a command!', description="Please use ~~help for a list of valid commands ", color=embedcolorred)
+            embed=discord.Embed(title=u'\u274C That is not a command!', description="Please use f!help for a list of valid commands ", color=embedcolorred)
             embed.add_field(name="Make sure you input a **actual** command!", value="This includes capitalisation", inline=True)
             embed.add_field(name="If you continue to experience problems, please raise a issue at", value="https://github.com/Nuk3lar/FluxBot/issues", inline=True)
             channel = ctx.message.channel

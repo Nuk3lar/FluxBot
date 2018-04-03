@@ -26,7 +26,7 @@ if __name__ == '__main__':
     logging.info('[ExtensionManager] Extension Loading Complete')
         
 
-version="0.1.6"
+version="0.1.7"
 # On bot ready
 print(f'[Version] {version}')
 @bot.event
@@ -35,7 +35,7 @@ async def on_ready():
     logging.info("FLUXBOT "+version+" STARTED")
     await bot.change_presence(activity=discord.Activity(name='f!help', type=3))
     embed=discord.Embed(title= u"\u2705"+f" FluxBot {version} Started!", desctiption="", color=embedcolorred)
-    channel = bot.get_channel(430463352523849740)
+    channel = bot.get_channel(330390973005955073)
     await channel.send('', embed=embed)
 
 bot.run(token, bot=True, reconnect=True)

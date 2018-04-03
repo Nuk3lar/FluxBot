@@ -14,7 +14,7 @@ class management:
         channel = self.bot.get_channel(430538897211129856)
         intauthorid = message.author.id
         authorid = str(intauthorid)
-        logging.info('CMD ~~kick ran by User ID: '+authorid)
+        logging.info('CMD f!kick ran by User ID: '+authorid)
         if reason is None:
             embed=discord.Embed(title=u'\u26D4'+' User '+strmember+' was kicked by '+strauthor, description='\nNo reason provided', color=embedcolorred)
             await channel.send(embed=embed)
@@ -31,7 +31,7 @@ class management:
             await channel.send(embed=embed)
             intauthorid = message.author.id
             authorid = str(intauthorid)
-            logging.info('CMD ~~kick ran by User ID: '+authorid)
+            logging.info('CMD f!kick ran by User ID: '+authorid)
             kickedIDint = member.id
             kickedid = str(kickedIDint)
             logging.info('User ID: '+kickedid+' was kicked for: '+reason+' by User ID: '+authorid)
@@ -48,7 +48,7 @@ class management:
         strauthor = str(message.author)
         intauthorid = message.author.id
         authorid = str(intauthorid)
-        logging.info('CMD ~~ban ran by User ID: '+authorid)
+        logging.info('CMD f!ban ran by User ID: '+authorid)
         channel = self.bot.get_channel(430538897211129856)
         if reason is None:
             embed=discord.Embed(title=u'\u26D4'+' User '+strmember+' was BANNED by '+strauthor, description='\nNo reason provided', color=embedcolorred)
@@ -77,7 +77,10 @@ class management:
     @commands.is_owner()
     @commands.command(name="reload")
     async def _reload(self, message, *, part: str):
-        channel = message.channel  
+        channel = message.channel
+        intauthorid = message.author.id
+        authorid = str(intauthorid)
+        logging.info('CMD f!reload ran by User ID: '+authorid)  
         try:
             bot.unload_extension(part)
             embed=discord.Embed(title=u'\u2705'+f' {part} unloaded successfly!', color=embedcolorpur)
@@ -104,7 +107,23 @@ class management:
             logging.info('[ExtensionManager] Failed to unload extension '+part+'')
             traceback.print_exc()
             await channel.send('', embed=embed)
-            
+class ModHelp:
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command(name='modhelp')
+    @commands.has_any_role(*mod, *admin)
+    @commands.guild_only()
+    async def _modhelp(self, message, *, part : str = None):
+        if part is None:
+            embed=discord.Embed(title="Help for FluxBot", description="List of Admin & Mod commands\n(part) | Required arguement\n[part] | Optional arguement\nDon't include the brackets used in examples!", color=embedcolorpur)
+            embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
+            embed.set_thumbnail(url="https://i.imgur.com/mNMjP3D.png")
+            embed.add_field(name='Commands', value='`f!kick` | Kicks a user\n`f!warn` | Warsn a user\n`f!ban` | Bans a user\n`f!reload` | Reloads a part of the bot')
+            embed.set_footer(text="Use f!modhelp [cmd] to view specific help and usage info on a command!")
+            channel = message.channel
+            await channel.send('', embed=embed)
 
 def setup(bot):
     bot.add_cog(management(bot))
+    bot.add_cog(ModHelp(bot))
