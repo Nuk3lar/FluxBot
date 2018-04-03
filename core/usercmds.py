@@ -1,4 +1,4 @@
-import discord, sys, asyncio, logging, os                                  # Importing Modules
+import discord, sys, asyncio, logging, os, random                                  # Importing Modules
 from discord.ext.commands import Bot
 from discord.ext import commands
 from core.config import Client, bot, members, guest, cwd, adminstaff, modstaff, embedcolorred, embedcolorpur
@@ -66,25 +66,26 @@ class CookieCMD:
         memberid = str(memberidint)
         logging.info('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
         print('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
+        file = random.randint(1,6)
         if sys.platform == "linux":
             if touser is None:
                 channel = message.channel
-                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}/assets/cookie/{file}.jpg'))
             else:
                 channel = message.channel
                 try:
-                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}/assets/cookie/{file}.jpg'))
                 except:
                     await channel.send('Not a user!')
         elif sys.platform == "win32":
             
             if touser is None:
                 channel = message.channel
-                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
+                await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\cookie\\{file}.jpg'))
             else:
                 channel = message.channel
                 try:
-                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}/assets/COOKIE.jpg'))
+                    await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}\\assets\\cookie\\{file}.jpg'))
                 except:
                     await channel.send('Not a user!')
 
