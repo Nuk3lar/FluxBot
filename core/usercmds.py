@@ -76,6 +76,20 @@ class GenInvite:
         embed=discord.Embed(title="Here's a invite!", description="https://discord.gg/8GVxqpz", color=embedcolorpur)
         channel = message.channel
         await channel.send('', embed=embed)
+class Info:
+    def __init__(self, bot):
+        self.bot = bot
+    @commands.command(name="info")
+    @commands.guild_only()
+    async def _info(self, ctx):
+        Guild = ctx.guild
+        embed=discord.Embed(title=f"Server Info for {Guild.name}", desctiption=f"", color=embedcolorpur)
+        embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
+        embed.set_thumbnail(url="https://i.imgur.com/mNMjP3D.png")
+        embed.add_field(name=f'Owner: {Guild.owner}', value=f"Member count {Guild.member_count}\nInfo Channel: <#430464003555459072>\nReddit Link: https://www.reddit.com/r/gcorp/\nSteam Group ID: warfare_genesis")
+        embed.set_footer(text="Use f!help [cmd] to see help on commands!")
+        await ctx.message.channel.send('', embed=embed)
+    
             
 
 def setup(bot):
@@ -84,3 +98,4 @@ def setup(bot):
     bot.add_cog(StaffCMD(bot))
     bot.add_cog(CookieCMD(bot))
     bot.add_cog(GenInvite(bot))
+    bot.add_cog(Info(bot))

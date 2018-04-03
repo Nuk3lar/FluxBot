@@ -74,7 +74,7 @@ class management:
             await member.ban(reason=reason, delete_message_days=0)
         
         
-    @commands.has_any_role(*admin)
+    @commands.is_owner()
     @commands.command(name="reload")
     async def _reload(self, message, *, part: str):
         channel = message.channel  
