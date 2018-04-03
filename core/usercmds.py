@@ -23,7 +23,38 @@ class HelpCMD:
             embed.set_footer(text="Use f!help [cmd] to view specific help and usage info on a command!")
             channel = message.channel
             await channel.send('', embed=embed)
-
+        if part == 'help':
+            embed=discord.Embed(title='Help for command: '+part, description="Shows help" ,color=embedcolorpur)
+            embed.set_thumbnail(url='https://i.imgur.com/mNMjP3D.png')
+            embed.add_field(name='Usage', value='~~'+part+' [cmd]', inline=False)
+            embed.add_field(name='Inputs [Optional]', value='cmd | shows command-specific help.', inline=True)
+            channel = message.channel
+            await channel.send('', embed=embed)
+        if part == 'cookie':
+            embed=discord.Embed(title='Help for command: '+part, description="Gives you a cookie, or sends one to another player", color=embedcolorpur)
+            embed.set_thumbnail(url='https://i.imgur.com/mNMjP3D.png')
+            embed.add_field(name='Usage', value='~~'+part+' [@user]', inline=False)
+            embed.add_field(name='Inputs [Optional]', value='player(mention them) | sends a cookie to the mentioned player', inline=True)
+            channel = message.channel
+            await channel.send('', embed=embed)
+        if part == 'staff':
+            embed=discord.Embed(title='Help for command: '+part, description="List off all the staff", color=embedcolorpur)
+            embed.set_thumbnail(url='https://i.imgur.com/mNMjP3D.png')
+            embed.add_field(name='Usage', value='~~'+part, inline=False)
+            channel = message.channel
+            await channel.send('', embed=embed)
+        if part == 'invite':
+            embed=discord.Embed(title='Help for command: '+part, description="Fetches you a invite link", color=embedcolorpur)
+            embed.set_thumbnail(url='https://i.imgur.com/mNMjP3D.png')
+            embed.add_field(name='Usage', value='~~'+part, inline=False)
+            channel = message.channel
+            await channel.send('', embed=embed)
+        if part == 'info':
+            embed=discord.Embed(title='Help for command: '+part, description="Shows some info about the server", color=embedcolorpur)
+            embed.set_thumbnail(url='https://i.imgur.com/mNMjP3D.png')
+            embed.add_field(name='Usage', value='~~'+part, inline=False)
+            channel = message.channel
+            await channel.send('', embed=embed)
 class CookieCMD:
     def __init__(self, bot):
         self.bot = bot
