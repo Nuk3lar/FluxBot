@@ -80,17 +80,26 @@ class management:
             bot.unload_extension(part)
             embed=discord.Embed(title=u'\u2705'+f' {part} unloaded successfly!')
             await channel.send('', embed=embed)
+            print(f'[ExtensionManager] Successfully unloaded extension {part}')
+            logging.info('[ExtensionManager] Successfully unloaded extension '+part+'')
             time.sleep(2)
             try:
+                
                 bot.load_extension(part)
+                print(f'[ExtensionManager] Successfully reloaded extension {part}')
+                logging.info('[ExtensionManager] Successfully reloaded extension '+part+'')
                 embed=discord.Embed(title=u'\u2705'+f' {part} reloaded successfly!')
                 await channel.send('', embed=embed)
             except:
-                embed=discord.Embed(title=u'\u247C'+f' {part} failed to load back in...')
+                print(f'[ExtensionManager] Failed to load extension {part} back in.', file=sys.stderr)
+                logging.info('[ExtensionManager] Failed to load extension '+part+' back in.')
+                embed=discord.Embed(title=u'\u274C'+f' {part} failed to load back in...')
                 traceback.print_exc()
                 await channel.send('', embed=embed)
         except:
-            embed=discord.Embed(title=u'\u247C'+f' {part} failed to unload...')
+            embed=discord.Embed(title=u'\u274C'+f' {part} failed to unload...')
+            print(f'[ExtensionManager] Failed to unload extension {part}')
+            logging.info('[ExtensionManager] Failed to unload extension '+part+'')
             traceback.print_exc()
             await channel.send('', embed=embed)
             
