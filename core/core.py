@@ -57,6 +57,12 @@ class ErrorHandler:
             embed.add_field(name="If you continue to experience problems, please raise a issue at", value="https://github.com/Nuk3lar/FluxBot/issues", inline=True)
             channel = ctx.message.channel
             await channel.send('', embed=embed)
+        elif isinstance(error, commands.DisabledCommand):
+            logging.error(error) #logs the error
+            embed=discord.Embed(title=u"\u274C This Command is Disabled", description='' , color=embedcolorred)
+            embed.add_field(name="If you continue to experience problems, please raise a issue at", value="https://github.com/Nuk3lar/FluxBot/issues", inline=True)
+            channel = ctx.message.channel
+            await channel.send('', embed=embed)
         elif isinstance(error, commands.CheckFailure):
             member = ctx.message.author
             memberidint = member.id
