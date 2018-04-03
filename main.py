@@ -3,7 +3,7 @@
 import discord, sys, asyncio, logging, traceback
 from discord.ext.commands import Bot
 from discord.ext import commands
-from core.config import token, Client, bot, initial_extensions
+from core.config import token, Client, bot, initial_extensions, embedcolorred
 # Logging config
 logging.basicConfig(filename='output.log', filemode='w', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
@@ -34,7 +34,7 @@ async def on_ready():
     print(f'==============FluxBot {version} Started==============')
     logging.info("FLUXBOT "+version+" STARTED")
     await bot.change_presence(activity=discord.Activity(name='f!help', type=3))
-    embed=discord.Embed(title= u"\u2705"+f" FluxBot {version} Started!", desctiption="", color=0xb20000)
+    embed=discord.Embed(title= u"\u2705"+f" FluxBot {version} Started!", desctiption="", color=embedcolorred)
     channel = bot.get_channel(430463352523849740)
     await channel.send('', embed=embed)
 

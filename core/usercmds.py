@@ -1,7 +1,7 @@
 import discord, sys, asyncio, logging                                  # Importing Modules
 from discord.ext.commands import Bot
 from discord.ext import commands
-from core.config import Client, bot, members, guest, cwd, adminstaff, modstaff
+from core.config import Client, bot, members, guest, cwd, adminstaff, modstaff, embedcolorred, embedcolorpur
 
 class HelpCMD:
     def __init__(self, bot):
@@ -16,7 +16,7 @@ class HelpCMD:
         logging.info('[CommandHandler] CMD f!help ran by User ID: '+memberid)
         print('[CommandHandler] CMD f!help ran by User ID: '+memberid)
         if part is None:
-            embed=discord.Embed(title="Help for FluxBot", description="List of commands\n(part) | Required arguement\n[part] | Optional arguement\nDon't include the brackets used in examples!", color=0x3f00bf)
+            embed=discord.Embed(title="Help for FluxBot", description="List of commands\n(part) | Required arguement\n[part] | Optional arguement\nDon't include the brackets used in examples!", color=embedcolorpur)
             embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
             embed.set_thumbnail(url="https://i.imgur.com/mNMjP3D.png")
             embed.add_field(name='Commands', value='`f!help` | Displays this menu\n`f!cookie` | Have a cookie\n`f!staff` | Lists staff\n`f!invite` | Gets invite link\n`f!info` | Get general info ')
@@ -56,7 +56,7 @@ class StaffCMD:
         memberid = str(memberidint)
         print('[CommandHandler] CMD f!staff ran by User ID: '+memberid)
         logging.info('[CommandHandler] CMD f!staff ran by User ID: '+memberid)
-        embed=discord.Embed(title="Staff list for GCorp", description="", color=0x3f00bf)
+        embed=discord.Embed(title="Staff list for GCorp", description="", color=embedcolorpur)
         embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
         embed.set_thumbnail(url="https://i.imgur.com/mNMjP3D.png")
         adminstaffpr = "\n".join(adminstaff)
@@ -73,7 +73,7 @@ class GenInvite:
     @commands.command(name="invite")
     @commands.guild_only()
     async def _invite(self, message,):
-        embed=discord.Embed(title="Here's a invite!", description="https://discord.gg/8GVxqpz")
+        embed=discord.Embed(title="Here's a invite!", description="https://discord.gg/8GVxqpz", color=embedcolorpur)
         channel = message.channel
         await channel.send('', embed=embed)
             
