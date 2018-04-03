@@ -8,7 +8,8 @@ Client = discord.Client()
 bot = commands.Bot(command_prefix = "f!")
 
 initial_extensions = ['core.core',
-                      'core.usercmds']
+                      'core.usercmds',
+                      'core.modcmds']
 
 adminstaff = ['アロンニクスゲーム「archonxgames」#5535',
               'Karlo#2230',
@@ -31,3 +32,5 @@ modstaff = ['4614/goinallout8#8911',
 # Perms
 guest = {'Guest'}
 members = {'Member'}
+mod = {'Moderator'}
+admin = {'Admin'}
