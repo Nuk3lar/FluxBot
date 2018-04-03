@@ -66,6 +66,16 @@ class StaffCMD:
         embed.add_field(name='Mods', value=f"{modstaffpr}")
         channel = message.channel
         await channel.send('', embed=embed)
+
+class GenInvite:
+    def __init__(self, bot):
+        self.bot = bot
+    @commands.command(name="invite")
+    @commands.guild_only()
+    async def _invite(self, message,):
+        embed=discord.Embed(title="Here's a invite!", description="https://discord.gg/8GVxqpz")
+        channel = message.channel
+        await channel.send('', embed=embed)
             
 
 def setup(bot):
@@ -73,3 +83,4 @@ def setup(bot):
     bot.add_cog(HelpCMD(bot))
     bot.add_cog(StaffCMD(bot))
     bot.add_cog(CookieCMD(bot))
+    bot.add_cog(GenInvite(bot))

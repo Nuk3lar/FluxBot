@@ -26,7 +26,7 @@ if __name__ == '__main__':
     logging.info('[ExtensionManager] Extension Loading Complete')
         
 
-version="0.1.5"
+version="0.1.6"
 # On bot ready
 print(f'[Version] {version}')
 @bot.event

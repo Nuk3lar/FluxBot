@@ -6,6 +6,7 @@ class management:
     def __init__(self, bot):
         self.bot = bot
     @commands.has_any_role(*mod, *admin)
+    @commands.guild_only()
     @commands.command(name="kick")
     async def _kick(self, message, member: discord.Member, *, reason : str = None):
         strmember = str(member)
@@ -40,6 +41,7 @@ class management:
             await channel.send('', embed=embed)
             await member.kick(reason=reason)
     @commands.has_any_role(*admin)
+    @commands.guild_only()
     @commands.command(name="ban")
     async def  _ban(self, message, member: discord.Member, *, reason : str = None):
         strmember = str(member)
