@@ -34,5 +34,8 @@ guest = {'Guest'}
 members = {'Member'}
 mod = {'Moderator'}
 admin = {'Admin'}
+dev = {'Developer'}
 embedcolorpur=0x3f00bf
 embedcolorred=0xb20000
+def setup(bot):
+    pass
