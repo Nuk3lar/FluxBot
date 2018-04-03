@@ -1,7 +1,7 @@
 import discord, sys, asyncio, logging                                  # Importing Modules
 from discord.ext.commands import Bot
 from discord.ext import commands
-from core.config import Client, bot, members, guest, cwd
+from core.config import Client, bot, members, guest, cwd, adminstaff, modstaff
 
 class HelpCMD:
     def __init__(self, bot):
@@ -13,7 +13,8 @@ class HelpCMD:
         member = message.author
         memberidint = member.id
         memberid = str(memberidint)
-        logging.info('CMD f!help ran by User ID: '+memberid)
+        logging.info('[CommandHandler] CMD f!help ran by User ID: '+memberid)
+        print('[CommandHandler] CMD f!help ran by User ID: '+memberid)
         if part is None:
             embed=discord.Embed(title="Help for FluxBot", description="List of commands\n(part) | Required arguement\n[part] | Optional arguement\nDon't include the brackets used in examples!", color=0x3f00bf)
             embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
@@ -28,16 +29,43 @@ class CookieCMD:
         self.bot = bot
     @commands.command(name='cookie')
     @commands.guild_only()
-    async def _cookie(self, message):
+    async def _cookie(self, message, *, touser : discord.Member = None):
         member = message.author
         memberidint = member.id
         memberid = str(memberidint)
-        logging.info('CMD f!cookie ran by User ID: '+memberid)
-        channel = message.channel
-        await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
+        logging.info('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
+        print('[CommandHandler] CMD f!cookie ran by User ID: '+memberid)
+        if touser is None:
+            channel = message.channel
+            await channel.send('Heres a cookie! '+member.mention, file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
+        else:
+            channel = message.channel
+            try:
+                await channel.send(f'{member.mention} gave you a cookie! {touser.mention}', file=discord.File(f'{cwd}\\assets\\COOKIE.jpg'))
+            except:
+                await channel.send('Not a user!')
+
+class StaffCMD:
+    def __init__(self, bot):
+        self.bot = bot
+    @commands.command(name='staff')
+    @commands.guild_only()
+    async def _staff(self, message):
+        member = message.author
+        memberidint = member.id
+        memberid = str(memberidint)
+        print('[CommandHandler] CMD f!staff ran by User ID: '+memberid)
+        logging.info('[CommandHandler] CMD f!staff ran by User ID: '+memberid)
+        embed=discord.Embed(title="Staff list for GCorp", description="", color=0x3f00bf)
+        embed.set_author(name="Nukelar", url="https://github.com/Nuk3lar/FluxBot", icon_url="https://i.imgur.com/xBxfC7Y.png")
+        embed.set_thumbnail(url="https://i.imgur.com/mNMjP3D.png")
+        adminstaffpr = "\n".join(adminstaff)
         
-
-
+        modstaffpr = "\n".join(modstaff)
+        embed.add_field(name='Admins', value=f"{adminstaffpr}\n")
+        embed.add_field(name='Mods', value=f"{modstaffpr}")
+        channel = message.channel
+        await channel.send('', embed=embed)
             
 
 def setup(bot):

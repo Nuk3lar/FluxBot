@@ -17,7 +17,7 @@ class JoinLeave:
         channel = self.bot.get_channel(430463352523849740)
         user = member
         role = discord.utils.get(user.guild.roles, id=430479798738092035)
-        await member.add_role(role)
+        await member.add_roles(role)
         await channel.send('Welcome to GCorp '+member.mention)
     @Client.event
     async def on_member_remove(self, member: discord.Member):
